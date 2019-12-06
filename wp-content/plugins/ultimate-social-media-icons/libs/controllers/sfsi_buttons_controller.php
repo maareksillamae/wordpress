@@ -425,6 +425,8 @@ function sfsi_options_updater5()
     $sfsi_icons_size                = isset($_POST["sfsi_icons_size"]) ? sanitize_text_field($_POST["sfsi_icons_size"]) : '51';
     $sfsi_icons_spacing             = isset($_POST["sfsi_icons_spacing"]) ? sanitize_text_field($_POST["sfsi_icons_spacing"]) : '2';
     $sfsi_icons_Alignment           = isset($_POST["sfsi_icons_Alignment"]) ? sanitize_text_field($_POST["sfsi_icons_Alignment"]) : 'center';
+    $sfsi_icons_Alignment_via_widget     = isset($_POST["sfsi_icons_Alignment_via_widget"]) ? sanitize_text_field($_POST["sfsi_icons_Alignment_via_widget"]) : 'center';
+    $sfsi_icons_Alignment_via_shortcode  = isset($_POST["sfsi_icons_Alignment_via_shortcode"]) ? sanitize_text_field($_POST["sfsi_icons_Alignment_via_shortcode"]) : 'center';
 
     $sfsi_icons_perRow              = isset($_POST["sfsi_icons_perRow"]) ? sanitize_text_field($_POST["sfsi_icons_perRow"]) : '5';
     $sfsi_icons_ClickPageOpen       = isset($_POST["sfsi_icons_ClickPageOpen"]) ? sanitize_text_field($_POST["sfsi_icons_ClickPageOpen"]) : 'no';
@@ -485,6 +487,8 @@ function sfsi_options_updater5()
         'sfsi_icons_size'               => intval($sfsi_icons_size),
         'sfsi_icons_spacing'            => intval($sfsi_icons_spacing),
         'sfsi_icons_Alignment'          => sanitize_text_field($sfsi_icons_Alignment),
+        'sfsi_icons_Alignment_via_widget'          => sanitize_text_field($sfsi_icons_Alignment_via_widget),
+        'sfsi_icons_Alignment_via_shortcode'          => sanitize_text_field($sfsi_icons_Alignment_via_shortcode),
         'sfsi_icons_perRow'             => intval($sfsi_icons_perRow),
         'sfsi_icons_ClickPageOpen'      => sanitize_text_field($sfsi_icons_ClickPageOpen),
         'sfsi_icons_suppress_errors'    => sanitize_text_field($sfsi_icons_suppress_errors),
@@ -526,7 +530,6 @@ function sfsi_options_updater5()
     if ("yes" == $sfsi_icons_suppress_errors) {
         update_option('sfsi_error_reporting_notice_dismissed', false);
     }
-
     update_option('sfsi_section5_options',  serialize($up_option5));
     header('Content-Type: application/json');
     echo json_encode(array("success"));
@@ -1367,52 +1370,36 @@ function sfsi_get_feed_id()
     }
     wp_die();
 }
-/* save settings for save export */
-add_action('wp_ajax_save_export', 'sfsi_save_export');
-function sfsi_save_export()
-{
-    $option1 =  unserialize(get_option('sfsi_section1_options', false));
-    $option2 =  unserialize(get_option('sfsi_section2_options', false));
-    $option3 =  unserialize(get_option('sfsi_section3_options', false));
-    $option4 =  unserialize(get_option('sfsi_section4_options', false));
-    $option5 =  unserialize(get_option('sfsi_section5_options', false));
-    $option6 =  unserialize(get_option('sfsi_section6_options', false));
-    $option7 =  unserialize(get_option('sfsi_section7_options', false));
-    $option8 =  unserialize(get_option('sfsi_section8_options', false));
-    $option9 =  unserialize(get_option('sfsi_section9_options', false));
-    $sfsi_new_show_notification = get_option("sfsi_new_show_notification");
-    $sfsi_show_notification = get_option("sfsi_show_notification");
-    $sfsi_footer_sec = get_option("sfsi_footer_sec");
-    $sfsi_new_show_notification = get_option("sfsi_new_show_notification");
-    $sfsi_pluginVersion = get_option("sfsi_pluginVersion");
-    $sfsi_show_Setting_mobile_notification = get_option("sfsi_show_Setting_mobile_notification");
-    $sfsi_installDate = get_option("sfsi_installDate");
-    
-    /* size and spacing of icons */
-    $save_export_options = array(
-        'option1'               => $option1,
-        'option2'               => $option2,
-        'option3'               => $option3,
-        'option4'               => $option4,
-        'option5'               => $option5,
-        'option6'               => $option6,
-        'option7'               => $option7,
-        'option8'               => $option8,
-        'option9'               => $option9,    
-        'sfsi_new_show_notification' => $sfsi_new_show_notification,  
-        'sfsi_show_notification' => $sfsi_show_notification,
-        'sfsi_footer_sec' => $sfsi_footer_sec,
-        'sfsi_new_show_notification' => $sfsi_new_show_notification,
-        'sfsi_pluginVersion' => $sfsi_pluginVersion,
-        'sfsi_show_Setting_mobile_notification' => $sfsi_show_Setting_mobile_notification,
-        'sfsi_installDate' => $sfsi_installDate
-    );
 
+add_action('wp_ajax_sfsi_save_export', 'sfsi_save_export');
+function sfsi_save_export(){
+    $option1 =  unserialize(get_option('sfsi_section1_options', false));
+	$option2 =  unserialize(get_option('sfsi_section2_options', false));
+	$option3 =  unserialize(get_option('sfsi_section3_options', false));
+	$option4 =  unserialize(get_option('sfsi_section4_options', false));
+	$option5 =  unserialize(get_option('sfsi_section5_options', false));
+	$option6 =  unserialize(get_option('sfsi_section6_options', false));
+	$option7 =  unserialize(get_option('sfsi_section7_options', false));
+	$option8 =  unserialize(get_option('sfsi_section8_options', false));
+    $option9 =  unserialize(get_option('sfsi_section9_options', false));
+	$sfsi_pluginVersion = get_option("sfsi_installDate");
+    
+    $save_export_options = array(
+        'option1'                => $option1,
+        'option2'                => $option2,
+        'option3'                => $option3,
+        'option4'                => $option4,
+        'option5'                => $option5,
+        'option6'                => $option6,
+        'option7'                => $option7,
+        'option8'                => $option8,
+        'option9'                => $option9,
+        'sfsi_pluginVersion'    => $sfsi_pluginVersion,
+    );
     $json = json_encode($save_export_options);
     header('Content-disposition: attachment; filename=file.json');
     header('Content-type: application/json');
     echo $json;
     exit;
-}
 
-?>
+}

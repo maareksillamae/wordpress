@@ -2513,7 +2513,11 @@ p.sfsi_prem_plu_desc a {
 }
 .sfsi_icons_other_allign {
     width: auto;
-    font-size: 15px !important;
+    color: #5a6570;
+    text-align: left;
+    font-family: 'helveticaneue-light';
+    font-size: 17px;
+    line-height: 26px;
 }
 
 /* new notification bar css*/
@@ -5299,25 +5303,4 @@ input[type="number"] {
 }
 #ui-id-6 .tab6 .sfsi_toggleonlystndrshrng p{
     padding-left:0!important;
-}
-.export_selections{
-    clear: both;
-    color: #afafaf;
-    font-size: 23px;
-    display: flex;
-    height: 0px;
-    position: absolute;
-    top: 13px;
-    right: 0;
-}
-
-.save_export{
-    clear: both;
-    position: relative;
-}
-
-.export{
-    padding-right: 11px;
-    text-decoration: underline;
-    cursor: pointer;
 }

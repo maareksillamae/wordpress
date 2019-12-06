@@ -39,7 +39,7 @@ function sfsi_update_plugin()
         update_option("sfsi_custom_icons", "yes");
     }
     //Install version
-    update_option("sfsi_pluginVersion", "2.44");
+    update_option("sfsi_pluginVersion", "2.45");
 
     if (!get_option('sfsi_serverphpVersionnotification')) {
         add_option("sfsi_serverphpVersionnotification", "yes");
@@ -796,6 +796,8 @@ function sfsi_activate_plugin()
             'sfsi_icons_size'            => '40',
             'sfsi_icons_spacing'        => '5',
             'sfsi_icons_Alignment'        => 'left',
+            'sfsi_icons_Alignment_via_widget'        => 'left',
+            'sfsi_icons_Alignment_via_shortcode'        => 'left',
             'sfsi_icons_perRow'            => '5',
             'sfsi_icons_ClickPageOpen'    => 'yes',
             'sfsi_icons_suppress_errors' => 'no',
@@ -1368,49 +1370,58 @@ function sfsi_pingVendor($post_id)
     if (wp_is_post_revision($post_id))
         return;
     $post_data = get_post($post_id, ARRAY_A);
-    if ($post_data['post_status'] == 'publish' && $post_data['post_type'] == 'post') :
-        $categories = wp_get_post_categories($post_data['ID']);
-        $cats = '';
-        $total = count($categories);
-        $count = 1;
-        foreach ($categories as $c) {
-            $cat_data = get_category($c);
-            if ($count == $total) {
-                $cats .= $cat_data->name;
-            } else {
-                $cats .= $cat_data->name . ',';
-            }
-            $count++;
-        }
-        $postto_array = array(
-            'feed_id'   => sanitize_text_field(get_option('sfsi_feed_id')),
-            'title'     => $post_data['post_title'],
-            'description' => $post_data['post_content'],
-            'link'      => $post_data['guid'],
-            'author'    => get_the_author_meta('user_login', $post_data['post_author']),
-            'category'  => $cats,
-            'pubDate'   => $post_data['post_modified'],
-            'rssurl'    => sfsi_get_bloginfo('rss2_url')
-        );
-
-        $args = array(
-            'body' => $postto_array,
-            'blocking' => true,
-            'user-agent' => 'sf rss request',
-            'header'    => array("Content-Type" => "application/x-www-form-urlencoded"),
-            'sslverify' => true
-        );
-        $resp = wp_remote_post('http://www.specificfeeds.com/wordpress/addpostdata ', $args);
-        if (is_wp_error($resp)) {
-            // update_option("sfsi_plus_curlErrorNotices", "yes");
-            // update_option("sfsi_plus_curlErrorMessage", $resp->get_error_message());
-            return  false;
-        } else {
-            // update_option("sfsi_plus_curlErrorNotices", "no");
-            // update_option("sfsi_plus_curlErrorMessage", "");
-            $resp = json_decode($resp['body']);
-            return true;
-        }
+    if($post_data['post_status']=='publish' && $post_data['post_type']=='post') : 
+		$feed_id = sanitize_text_field(get_option('sfsi_feed_id'));
+		return sfsi_setUpfeeds($feed_id);
+// 		$categories = wp_get_post_categories($post_data['ID']);
+// 		$cats='';
+// 		$total=count($categories);
+// 		$count=1;
+// 		foreach($categories as $c)
+// 		{	
+// 			$cat_data = get_category( $c );
+// 			if($count==$total)
+// 			{
+// 				$cats.= $cat_data->name;
+// 			}
+// 			else
+// 			{
+// 				$cats.= $cat_data->name.',';	
+// 			}
+// 			$count++;	
+// 		}
+// 		$postto_array = array(
+// 			'feed_id'	=> sanitize_text_field(get_option('sfsi_plus_feed_id')),
+// 			'title'		=> $post_data['post_title'],
+// 			'description' => $post_data['post_content'],
+// 			'link'		=> $post_data['guid'],
+// 			'author'	=> get_the_author_meta('user_login', $post_data['post_author']),
+// 			'category' 	=> $cats,
+// 			'pubDate'	=> $post_data['post_modified'],
+// 			'rssurl'	=> sfsi_plus_get_bloginfo('rss2_url')
+// 		);
+// 		$args = array(
+// 		    'body' => $postto_array,
+// 		    'blocking' => true,
+// 		    'user-agent' => 'sf rss request',
+// 		    'header'	=> array("Content-Type"=>"application/x-www-form-urlencoded"),
+// 		    'sslverify' => true
+// 		);
+// 		$data = get_option('sfsi_plus_log',array());
+// 		array_push($data,array("pingVendor"=>"ready to post","post_id"=>$post_id,"post_fields"=>$postto_array));
+// 		update_option('sfsi_plus_log',$data);
+// 		$resp = wp_remote_post( 'https://www.specificfeeds.com/wordpress/addpostdata', $args );
+// 		if ( !is_wp_error( $resp ) ) {
+// 			$resp = json_decode($resp['body']);
+// 			$data = get_option('sfsi_plus_log',array());
+// 			array_push($data,array("pingVendor"=>"sucess on call","post_id"=>$post_id,"response"=>$resp));
+// 			update_option('sfsi_plus_log',$data);
+// 			return true;
+// 		}else{
+// 			$data = get_option('sfsi_plus_log',array());
+// 			array_push($data,array("pingVendor"=>"error on call","post_id"=>$post_id,"err"=>$resp));
+// 			update_option('sfsi_plus_log',$data);
+// 		}
     endif;
 }
 add_action('save_post', 'sfsi_pingVendor');
@@ -1444,4 +1455,8 @@ function sfsi_was_displaying_addthis()
         update_option('sfsi_section6_options', serialize($sfsi_section6));
     }
 }
+
+
+
+
 ?>

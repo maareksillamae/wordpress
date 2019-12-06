@@ -67,49 +67,19 @@ $email = $current_user->user_email;
 <!-- Start jivo chat code -->
 
 <script type='text/javascript'>
-var sfsi_jivo_init=function(){ 
-	var widget_id =window.sfsi_jivo_widget_id= 'heGfAHWfsn';
-	var d=document;
-	var w=window;
-	function l(){
-		var s = document.createElement('script'); 
-		s.type = 'text/javascript'; 
-		s.async = true;
-		s.src = '//code.jivosite.com/script/widget/'+widget_id; 
-		var ss = document.getElementsByTagName('script')[0]; 
-		ss.parentNode.insertBefore(s, ss);
-		SFSI(".sfsi_wait_container").hide();
-
-	}
-	if(d.readyState=='complete'){
-		l();
-	}
-	else{
-		if(w.attachEvent){
-			w.attachEvent('onload',l);
-		}else{
-			w.addEventListener('load',l,false);
-		}
-	}
-};
+var sfsi_jivo_init=function(){ var widget_id =window.sfsi_plus_jivo_widget_id= 'heGfAHWfsn';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}};
 var sfsi_dummy_chat_icon={};
 sfsi_dummy_chat_icon.element=document.createElement('div');
 sfsi_dummy_chat_icon.element.id="sfsi_dummy_chat_icon";
 sfsi_dummy_chat_icon.element.style="position:fixed; bottom:0;right:10px;width:350px;height:74px;cursor:pointer;background-image:url('<?php echo SFSI_PLUGURL.'images/Chat_with_us_bar_light_green.png' ?>');background-position: -12.5px -11.5px;background-size: 374px 101px;border-top-left-radius: 8px;border-top-right-radius: 8px;";
-sfsi_dummy_chat_icon.element.onclick=function(){
-	SFSI(".sfsi_wait_container").show();
-}
 function sfsi_open_chat(){
 	if(window.jivo_api){
 		if( window.jivo_api.chatMode()==='online'){
-			window.jivo_api.open();
-			jQuery(".sfsi_wait_container").hide();
-			// sfsi_jivo_init();
+			sfsi_jivo_init();
 		}else{
 			jQuery('#jivo-iframe-container').remove();
-			jQuery('script[src="//code.jivosite.com/script/widget/'+sfsi_jivo_widget_id+'"]').remove();
+			jQuery('script[src="//code.jivosite.com/script/widget/'+sfsi_plus_jivo_widget_id+'"]').remove();
 			jQuery('#sfsi_jivo_offline_chat').show();
-			jQuery(".sfsi_wait_container").hide();
 		}
 	}else{
 		sfsi_jivo_init();
@@ -120,15 +90,13 @@ function sfsi_open_chat(){
 sfsi_dummy_chat_icon.element.onclick=sfsi_open_chat;
 var jivo_onLoadCallback = function(){
 	if(jivo_api.chatMode()==='online'){
-		jQuery(".sfsi_wait_container").hide();
 		jivo_api.showProactiveInvitation('How can I help you?');
 	}else{
 		jQuery('#jivo-iframe-container').remove();
-		jQuery('script[src="//code.jivosite.com/script/widget/'+sfsi_jivo_widget_id+'"]').remove();
+		jQuery('script[src="//code.jivosite.com/script/widget/'+sfsi_plus_jivo_widget_id+'"]').remove();
 		jQuery('#sfsi_jivo_offline_chat').show();
-		jQuery(".sfsi_wait_container").hide();
 	}
-	jQuery(sfsi_dummy_chat_icon.element).hide();
+	// jQuery(sfsi_dummy_chat_icon.element).hide();
 };
 // sfsi_dummy_chat_icon.heading= document.createElement('p');
 // sfsi_dummy_chat_icon.warning= document.createElement('p');

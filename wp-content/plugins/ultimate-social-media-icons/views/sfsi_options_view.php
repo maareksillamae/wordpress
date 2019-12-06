@@ -178,26 +178,32 @@
     </div>
 
     <div class="tab10">
-        <div class="save_export">
+    <div class="save_export">
             <div class="save_button">
+
                 <img src="<?php echo SFSI_PLUGURL; ?>images/ajax-loader.gif" class="loader-img" alt="error" />
+
                 <a href="javascript:;" id="save_all_settings" title="Save All Settings">Save All Settings</a>
+
             </div>
-            <p class="red_txt errorMsg" style="display:none"> </p>
-            <p class="green_txt sucMsg" style="display:none"> </p>
+            <?php $nonce = wp_create_nonce("sfsi_save_export"); ?>
+
             <div class="export_selections">
                 <div class="export" id="sfsi_save_export" data-nonce="<?php echo $nonce;?>">
-                    <?php _e('Export', SFSI_PLUGURL); ?>
+                    Export
                 </div>
 
-                <div><?php _e('selections', SFSI_PLUGURL); ?></div>
+                <div>selections</div>
 
             </div>
         </div>
+        <p class="red_txt errorMsg" style="display:none;font-size:21px"> </p>
+        <p class="green_txt sucMsg" style="display:none;font-size:21px"> </p>
+
         <?php include(SFSI_DOCROOT . '/views/sfsi_affiliate_banner.php'); ?><?php include(SFSI_DOCROOT . '/views/sfsi_section_for_premium.php'); ?>
+
         <!--<p class="bldtxtmsg">Need top-notch Wordpress development work at a competitive price? Visit us at <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=footer_credit&utm_medium=banner">ultimatelysocial.com</a></p>-->
     </div>
-
     <!-- all pops of plugin under sfsi_pop_content.php file -->
     <?php include(SFSI_DOCROOT . '/views/sfsi_pop_content.php'); ?>
 </div> <!-- START Admin view for plugin-->

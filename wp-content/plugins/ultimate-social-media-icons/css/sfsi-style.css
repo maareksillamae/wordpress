@@ -3473,3 +3473,29 @@ ul.sfsi_icn_listing8 li .tb_4_ck{
     line-height: 0px !important;
     margin: 0px 0px 0px 0px !important;
 }
+
+/* .sfsi_widget .sfsi_shortcode_container{
+    width: 100%;
+} */
+
+.export_selections{
+    clear: both;
+    color: #afafaf;
+    font-size: 23px;
+    display: flex;
+    height: 0px;
+    position: absolute;
+    top: 13px;
+    right: 0;
+}
+
+.save_export{
+    clear: both;
+    position: relative;
+}
+
+.export{
+    padding-right: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+}

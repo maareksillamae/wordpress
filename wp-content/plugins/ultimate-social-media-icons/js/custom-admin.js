@@ -168,12 +168,15 @@ function deleteskin_icon(s) {
             iconname: i,
             nonce: nonce
         };
+    // console.log('delete sin icon', i, iconname, nonce);
     SFSI.ajax({
         url: sfsi_icon_ajax_object.ajax_url,
         type: "post",
         data: e,
         dataType: "json",
         success: function (msg) {
+            // console.log(s, e, msg);
+
             if (msg.res === "success") {
                 SFSI(s).prev("a").text("Upload");
                 SFSI(s).prev("a").prev("img").attr("src", '');
@@ -626,6 +629,7 @@ function sfsi_update_step4() {
             sfsi_wechat_manualCounts: wcm,
             nonce: nonce
         };
+    // console.log($);
     return SFSI.ajax({
         url: sfsi_icon_ajax_object.ajax_url,
         type: "post",
@@ -660,6 +664,9 @@ function sfsi_update_step5() {
         e = SFSI("input[name='sfsi_icons_perRow']").val(),
         t = SFSI("input[name='sfsi_icons_spacing']").val(),
         n = SFSI("#sfsi_icons_Alignment").val(),
+        vw = SFSI("#sfsi_icons_Alignment_via_widget").val(),
+        vs = SFSI("#sfsi_icons_Alignment_via_shortcode").val(),
+
         o = SFSI("input[name='sfsi_icons_ClickPageOpen']:checked").val(),
 
         se = SFSI("input[name='sfsi_icons_suppress_errors']:checked").val(),
@@ -712,6 +719,8 @@ function sfsi_update_step5() {
         action: "updateSrcn5",
         sfsi_icons_size: i,
         sfsi_icons_Alignment: n,
+        sfsi_icons_Alignment_via_widget:  vw,
+        sfsi_icons_Alignment_via_shortcode: vs,
         sfsi_icons_perRow: e,
         sfsi_icons_spacing: t,
         sfsi_icons_ClickPageOpen: o,
@@ -749,6 +758,7 @@ function sfsi_update_step5() {
         sfsi_custom_social_hide: sfsi_custom_social_hide,
         nonce: nonce
     };
+    // console.log(T);
     SFSI.ajax({
         url: sfsi_icon_ajax_object.ajax_url,
         type: "post",
@@ -1628,6 +1638,7 @@ function sfsi_stick_widget(s) {
     0 == initTop.length && (SFSI(".sfsi_widget").each(function (s) {
         initTop[s] = SFSI(this).position().top;
     })
+    //  console.log(initTop)
     );
     var i = SFSI(window).scrollTop(),
         e = [],
@@ -1877,27 +1888,43 @@ SFSI(document).ready(function (s) {
     var sfsi_show_option3 = SFSI('input[name="sfsi_show_via_shortcode"]:checked').val()||'no';
     var sfsi_show_option4 = SFSI('input[name="sfsi_show_via_afterposts"]:checked').val()||'no';
     var sfsi_analyst_popup = SFSI('#sfsi_analyst_pop').attr('data-status');
+    // console.log(sfsi_show_option1);
+    // console.log(sfsi_show_option2);
+    // console.log(sfsi_show_option3);
+    // console.log(sfsi_show_option4);
     if(sfsi_analyst_popup =="no"){
         if(sfsi_show_option1=="no" && sfsi_show_option2=='no' && sfsi_show_option3 =='no' && sfsi_show_option4 == 'no'){
+            // console.log('should open');
             sfsi_open_admin_section(5);
+            // console.log("check if exists",SFSI("#ui-id-5"), SFSI("#ui-id-5").length , SFSI("#ui-id-5").attr('aria-selected')=="false");
             if(SFSI("#ui-id-5").length==0 || SFSI("#ui-id-5").attr('aria-selected')=="false"){
+                // console.log("'didnt'open in t0");
                 setTimeout(function(){
                     sfsi_open_admin_section(5);
                     if(SFSI("#ui-id-5").length==0 ||  SFSI("#ui-id-5").attr('aria-selected')=="false"){
+                        // console.log("'didnt'open in t2");
+
                         setTimeout(function(){
                             sfsi_open_admin_section(5);
+
                             if(SFSI("#ui-id-5").length==0 ||  SFSI("#ui-id-5").attr('aria-selected')=="false"){
+                                // console.log("'didnt'open in t4");
+                                
                                 setTimeout(function(){
                                     sfsi_open_admin_section(5);
                                     if(SFSI("#ui-id-5").length==0 ||  SFSI("#ui-id-5").attr('aria-selected')=="false"){
+                                        // console.log("'didnt'open in t6");
+                                        
                                         setTimeout(function(){
                                             sfsi_open_admin_section(5);
+                                            
                                         },2000);
                                     }                                    
                                 },2000);
                             }    
                         },2000);
                     }
+                    // SFSI('#ui-id-5').click();    
                 },2000);
             }
         }
@@ -1918,14 +1945,11 @@ SFSI(document).ready(function (s) {
                             }    
                         },2000);
                     }
+                    // SFSI('#ui-id-5').click();    
                 },2000);
             }
         })
     }
-
-    SFSI(document).on("click", "#sfsi_dummy_chat_icon", function () {
-        SFSI(".sfsi_wait_container").show();
-    });
 
     //changes done {Monad}
     SFSI(".tab_3_icns").on("click", ".cstomskins_upload", function () {
@@ -1951,6 +1975,8 @@ SFSI(document).ready(function (s) {
 
         var s = SFSI(this).parent().find("input:radio:first");
         var inputName = s.attr("name"); 
+        // console.log(inputName);
+
         var inputChecked = s.attr("checked");
 
         switch (inputName) {
@@ -2172,6 +2198,7 @@ SFSI(document).ready(function (s) {
             SFSI(this).css("opacity", "1");
         }),
         SFSI("#sfsi_save1").on("click", function () {
+            // console.log('save1',sfsi_update_step1());
             sfsi_update_step1() && sfsicollapse(this);
         }),
         SFSI("#sfsi_save2").on("click", function () {
@@ -2661,6 +2688,7 @@ SFSI(document).ready(function (s) {
         }
 
         if (!error) {
+            // console.log("feedid",feedid);
             if (feedid=="" || undefined==feedid){
                 var nonce = SFSI(this).attr('data-nonce-fetch-feed-id');
                 e = {
@@ -2683,6 +2711,7 @@ SFSI(document).ready(function (s) {
                                     alert("Error: Claiming didn't work. Please try again later.")
                                 }else{
                                     jQuery('#calimingOptimizationForm input[name="feed_id"]').val(feedid);
+                                    // console.log("feedid",feedid,SFSI("#calimingOptimizationForm input[name='feed_id']"),SFSI('#calimingOptimizationForm input[name="feedid"]').val());
                                     SFSI('#calimingOptimizationForm').submit();
                                 }
                             }else{
@@ -2732,13 +2761,16 @@ SFSI(document).ready(function (s) {
     });*/
     window.sfsi_initialization_checkbox_count = 0;
     window.sfsi_initialization_checkbox = setInterval(function () {
+        // console.log(jQuery('.radio_section.tb_4_ck>span.checkbox').length,jQuery('.radio_section.tb_4_ck>input.styled').length);
         if (jQuery('.radio_section.tb_4_ck>span.checkbox').length < jQuery('.radio_section.tb_4_ck>input.styled').length) {
             window.sfsi_initialization_checkbox_count++;
+            // console.log('not initialized',window.sfsi_initialization_checkbox_count);
             if (window.sfsi_initialization_checkbox_count > 12) {
                 // alert('Some script from diffrent plugin is interfearing with "Ultimate Social Icons" js files and checkbox couldn\'t be initialized. ');
                 // window.clearInterval(window.sfsi_initialization_checkbox);
             }
         } else {
+            // console.log('all initialized',window.sfsi_initialization_checkbox_count);
             window.clearInterval(window.sfsi_initialization_checkbox);
         }
     }, 1000);
@@ -2852,6 +2884,7 @@ SFSI(document).ready(function () {
     });
     SFSI('#sfsi_jivo_offline_chat #sfsi_sales form').submit(function (event) {
         event & event.preventDefault();
+        // console.log(event);
         var target = SFSI(this).parents('.tab-content');
         var message = SFSI(this).find('textarea[name="question"]').val();
         var email = SFSI(this).find('input[name="email"]').val();
@@ -2859,10 +2892,12 @@ SFSI(document).ready(function () {
         var nonce = SFSI(this).find('input[name="nonce"]').val();
 
         if ("" === email || false === re.test(String(email).toLowerCase())) {
+            // console.log(SFSI(this).find('input[name="email"]'));
             SFSI(this).find('input[name="email"]').css('background-color', 'red');
             SFSI(this).find('input[name="email"]').on('keyup', function () {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var email = SFSI(this).val();
+                // console.log(email,re.test(String(email).toLowerCase()) );
                 if ("" !== email && true === re.test(String(email).toLowerCase())) {
                     SFSI(this).css('background-color', '#fff');
                 }
@@ -2895,6 +2930,7 @@ function sfsi_close_offline_chat(e) {
 
 function sfsi_open_quick_checkout(e) {
     e && e.preventDefault();
+    // console.log(jQuery('.sfsi_quick-pay-box'));
     jQuery('.sfsi_quick-pay-box').show();
 }
 
@@ -2918,6 +2954,7 @@ function sfsi_responsive_icon_intraction_handler() {
     SFSI('select[name="sfsi_responsive_icons_settings_edge_type"]').on('change', function () {
         $target_div = (SFSI(this).parent());
         if (SFSI(this).val() === "Round") {
+            // console.log('Round', 'Round', SFSI(this).val());
 
             $target_div.parent().children().css('display', 'inline-block');
             $target_div.parent().next().css("display","inline-block");
@@ -2925,6 +2962,8 @@ function sfsi_responsive_icon_intraction_handler() {
             jQuery('.sfsi_responsive_icon_preview .sfsi_responsive_icon_item_container,.sfsi_responsive_icon_preview .sfsi_responsive_icons_count').css('border-radius', radius);
 
         } else {
+            // console.log('sharp', 'sharp', SFSI(this).val(), $target_div.parent().children(), $target_div.parent().children().hide());
+
             $target_div.parent().children().hide();
             $target_div.show();
             $target_div.parent().next().hide();
@@ -3040,6 +3079,7 @@ function sfsi_responsive_icon_intraction_handler() {
     })
     jQuery('.sfsi_responsive_custom_url_hide, .sfsi_responsive_default_url_hide').click(function (event) {
         event.preventDefault();
+        /* console.log(event,jQuery(event.target)); */
         jQuery(event.target).parent().parent().find('.sfsi_responsive_custom_url_hide').hide();
         jQuery(event.target).parent().parent().find('.sfsi_responsive_url_input').hide();
         jQuery(event.target).parent().parent().find('.sfsi_responsive_default_url_hide').hide();
@@ -3147,6 +3187,7 @@ function sfsi_responsive_icon_counter_tgl(hide, show, ref = null) {
 function sfsi_responsive_toggle_count() {
     var data = jQuery('input[name="sfsi_share_count"]:checked').val();
     var data2 = jQuery('input[name="sfsi_display_counts"]:checked').val();
+    /* console.log('toggleer ',data,data2); */
     if (data2 == "yes" && 'yes' == data) {
         jQuery('.sfsi_responsive_icon_preview .sfsi_responsive_icons_count').css('display', 'inline-block');
         jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').removeClass('sfsi_responsive_without_counter_icons').addClass('sfsi_responsive_with_counter_icons');
@@ -3200,7 +3241,9 @@ function sfsi_scroll_to_div(option_id, scroll_selector) {
 }
 
 function sfsi_fitText(container) {
+    /* 	console.log(container,container.parent().parent(),container.parent().parent().hasClass('sfsi_icons_container_box_fixed_container')); */
     if (container.parent().parent().hasClass('sfsi_icons_container_box_fixed_container')) {
+        /* console.log(window.sfsi_fittext_shouldDisplay); */
         if (window.sfsi_fittext_shouldDisplay === true) {
             if (jQuery('select[name="sfsi_responsive_icons_settings_icon_width_type"]').val() == "Fully responsive") {
                 var all_icon_width = jQuery('.sfsi_responsive_icons .sfsi_icons_container').width();
@@ -3263,6 +3306,7 @@ function sfsi_fitText(container) {
         }
     } else {
         var span = container.find('span');
+        /* 	console.log(span); */
         span.css('font-size', 'initial');
         span.show();
     }
@@ -3271,6 +3315,7 @@ function sfsi_fitText(container) {
 
 function sfsi_fixedWidth_fitText(container) {
     return;
+    /* console.log(sfsi_fittext_shouldDisplay); */
     if (window.sfsi_fittext_shouldDisplay === true) {
         if (jQuery('select[name="sfsi_responsive_icons_settings_icon_width_type"]').val() == "Fixed icon width") {
             var all_icon_width = jQuery('.sfsi_responsive_icons .sfsi_icons_container').width();
@@ -3366,12 +3411,14 @@ function sfsi_resize_icons_container() {
 }
 
 function sfsi_togglbtmsection(show, hide, ref) {
+    // console.log(show,hide);
     jQuery(ref).parent("ul").children("li.clckbltglcls").each(function (index, element) {
         jQuery(this).children(".radio").css("background-position", "0px 0px");
         jQuery(this).children(".styled").attr("checked", "false");
     });
     jQuery(ref).children(".radio").css("background-position", "0px -41px");
     jQuery(ref).children(".styled").attr("checked", "true");
+    // console.log(show,hide);
 
     jQuery("." + show).show();
     jQuery("." + show).children(".radiodisplaysection").show();
@@ -3387,6 +3434,7 @@ function sfsi_show_responsive(){
     var icon_type = jQuery('input[name="sfsi_display_button_type"]:checked').val();
     var responsive_show = jQuery('input[name="sfsi_responsive_icons_end_post"]:checked').val();
     setTimeout(function(){
+        // console.log(icon_type, responsive_show,icon_type=="responsive_button" && responsive_show=="yes");
         if(icon_type=="responsive_button" && responsive_show=="yes"){
             jQuery('.sfsi_responsive_icon_option_li.sfsi_responsive_show').show();
         }else{
@@ -3394,36 +3442,42 @@ function sfsi_show_responsive(){
         }
     },100);
 }
+
+ 
 function sfsi_save_export() {
     var nonce = SFSI("#sfsi_save_export").attr("data-nonce");
-    var data = {
-        action: "save_export",
-        nonce: nonce
+    console.log(nonce);
+	var data = {
+		action: "sfsi_save_export",
+		nonce: nonce
     };
-    SFSI.ajax({
-        url: sfsi_icon_ajax_object.ajax_url,
-        type: "post",
-        data: data,
-        success: function (s) {
-            if (s == "wrong_nonce") {
-                sfsiplus_showErrorSuc("error", "Unauthorised Request, Try again after refreshing page", 6);
-                global_error = 1;
-            } else {
-                var date = new Date();
-                var timestamp = date.getTime();
-                var blob = new Blob([JSON.stringify(s, null, 2)], {
-                    type: 'application/json'
-                });
-                var url = URL.createObjectURL(blob);
-                let link = document.createElement("a");
-                link.href = url;
-                link.download = "sfsi_export_options"+timestamp+".json"
-                link.innerText = "Open the array URL";
-                document.body.appendChild(link); 
-                link.click();
-                "success" == s ? (sfsiplus_showErrorSuc("Settings Exported !", "Saved !", 6)) : (global_error = 1,
-                    sfsiplus_showErrorSuc("error", "Unkown error , please try again", 6));
-            }
-        }
-    });
+    console.log(data);
+	SFSI.ajax({
+		url: sfsi_icon_ajax_object.ajax_url,
+		type: "post",
+		data: data,
+		success: function (s) {
+			console.log(s);
+			if (s == "wrong_nonce") {
+				showErrorSuc("error", "Unauthorised Request, Try again after refreshing page", 6);
+				global_error = 1;
+			} else {
+				var date = new Date();
+				var timestamp = date.getTime();
+				var blob = new Blob([JSON.stringify(s, null, 2)], {
+					type: 'application/json'
+				});
+				var url = URL.createObjectURL(blob);
+				let link = document.createElement("a");
+				link.href = url;
+				link.download = "sfsi_export_options" + timestamp + ".json"
+				link.innerText = "Open the array URL";
+				document.body.appendChild(link);
+				link.click();
+				(showErrorSuc("Settings Exported !", "Settings Exported !", 10));
+			}
+		}
+	});
+
 }
+

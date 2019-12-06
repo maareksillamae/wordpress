@@ -629,11 +629,3 @@ I want to see how it works</a></div>
     </div>
   </div>
 </div>
-
-<div class="pop-overlay read-overlay sfsi_wait_container" style="background:rgba(255,255,255,.6);z-index:9999;overflow-y:auto" >
-  <div class="sfsi_pop_up" style="padding-left: 0;padding-right: 0;padding-top:0;width:100%" >
-    <div class="sfsi_wait" style="width: 50px;height: 50px;margin: 25% auto;">
-      <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" alt="error" >
-    </div>
-  </div>
-</div>

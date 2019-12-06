@@ -3,7 +3,7 @@ Contributors: socialdude, socialtech
 Tags: social media, share, buttons, social widget, icons, share icons, share buttons, sharing icons, sharing buttons, social share, sharing, social sharing
 Requires at least: 3.5
 Tested up to: 5.3
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -251,17 +251,6 @@ Yes, you can disable the share icons under question 5. In our new Premium Plugin
 
 You cannot use the same plugin twice, however you can install both the USM as well as the Premiuem plugin (https://www.ultimatelysocial.com/usm-premium/). We've developed the code so that there are no conflicts and you can place the share icons in one way with one plugin, and select other share icons with the other plugin and place them differently.
 
-= How are you better than other social media / sharing plugins? =
-
-We get asked this quite a few times, and our response is always “please try it out” ;)
-
-But here are the main reason per social media plugin, why we think you should dry out our plugin: 
-- Addtoany - We offer various sets of social media icons (e.g. also responsive) while add to any only offers one default set 
-- Mashshare - About 11 social media icons are free in our plugin, but Mashare only offers 3 
-- Shareaholic - We don't propagate monetization options (showing ads on user's sites)
-- Sassy Social Share - We're easier to use
-- Social Media Feather - We offer more design options
-- Super Socializer - They offer also other featurs than social media sharing, while not offering that many design options
 
 == Screenshots ==
 
@@ -285,14 +274,16 @@ But here are the main reason per social media plugin, why we think you should dr
 
 
 == Changelog ==
+= 2.4.5 =
+* Updated Export section and success message after export
+* Corrected so that responsive icons don't show on homepage
+* Added Lazy load css to reduce conflicts
 
 = 2.4.4 =
-* Q3 auto opening and opening of Floating and 'before and after posts' open automatically for new installs
-* Analyst 5.4.
-* Added the spinner for the chart
-* Updated the wp version compatablity
-* Export and import section added 
-* Optimized bloc & teh wiget area for blocs (Gutenberg)
+* All console.log commented.
+* Added new  analyst 5.4.
+* Updated the wp version compatablity.
+* Added Export section.
 
 = 2.4.3 =
 * Updated Url encoded
@@ -897,5 +888,5 @@ But here are the main reason per social media plugin, why we think you should dr
 
 == Upgrade Notice ==
 
-= 2.4.4 =
+= 2.4.5 =
 Please upgrade

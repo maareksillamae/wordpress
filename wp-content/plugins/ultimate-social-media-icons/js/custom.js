@@ -173,6 +173,7 @@ SFSI(document).ready(function(s) {
         //check if not mobile
         if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
             //execute
+            // console.log('abc');
             event.preventDefault();
         }
     });
@@ -300,7 +301,7 @@ SFSI(document).ready(function(s) {
         var s = parseInt(SFSI(".sfsi_wDiv").height()) + 15 + "px";
         SFSI(".sfsi_holders").each(function() {
             SFSI(this).css("height", s);
-			SFSI(".sfsi_widget").css("min-height", "auto");
+			SFSI(".sfsi_widget");
         });
     }, 200);
 });
@@ -335,6 +336,7 @@ function sfsi_mobile_wechat_share(url){
 }
 function sfsi_copy_text_parent_input(event){
     var target = jQuery(event.target);
+    // console.log(target);
     input_target= target.parent().parent().parent().find('input');
     input_target.select();
     document.execCommand('copy');
@@ -414,6 +416,7 @@ function sfsi_widget_set(){
             var title_hght = jQuery(this).parent(".widget.sfsi").children(".widget-title").height();
             var totl_hght = parseInt( title_hght ) + parseInt( wdgt_hght );
             jQuery(this).parent(".widget.sfsi").css("min-height", totl_hght+"px");
+            // console.log('widget');
         }
     });
 }
