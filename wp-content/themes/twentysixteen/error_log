@@ -1,0 +1,8 @@
+[06-Jan-2020 17:26:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/sillamaemaarekik/public_html/wordpress/wp-content/themes/twentysixteen/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/sillamaemaarekik/public_html/wordpress/wp-content/themes/twentysixteen/index.php on line 17
+[06-Jan-2020 17:26:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/sillamaemaarekik/public_html/wordpress/wp-content/themes/twentysixteen/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/sillamaemaarekik/public_html/wordpress/wp-content/themes/twentysixteen/index.php on line 17
