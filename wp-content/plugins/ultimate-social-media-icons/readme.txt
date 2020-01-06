@@ -3,7 +3,7 @@ Contributors: socialdude, socialtech
 Tags: social media, share, buttons, social widget, icons, share icons, share buttons, sharing icons, sharing buttons, social share, sharing, social sharing
 Requires at least: 3.5
 Tested up to: 5.3
-Stable tag: 2.4.5
+Stable tag: 2.4.6
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Social media plugin which let's you add share icons for RSS, Email, Facebook, Tw
 
 This free plugin has a lot to offer. Even more can be found in the Premium Plugin, please watch this short video: 
 
-[vimeo https://vimeo.com/269140798] 
+[youtube https://youtu.be/xaZ8m5zSYRg]
 
 See [all features of the Premium plugin](https://www.ultimatelysocial.com/usm-premium/).
 
@@ -274,10 +274,16 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 
 == Changelog ==
+
+= 2.4.6 =
+* Updated Tweet about my page can be empty.
+* Updated Export section aligned center to button.
+* Updated top_arow css removed.
+
 = 2.4.5 =
-* Updated Export section and success message after export
-* Corrected so that responsive icons don't show on homepage
-* Added Lazy load css to reduce conflicts
+* Updated Export section and success message after export.
+* Updated the ping function.
+* Added Lazy load css.
 
 = 2.4.4 =
 * All console.log commented.
@@ -888,5 +894,5 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 == Upgrade Notice ==
 
-= 2.4.5 =
+= 2.4.6 =
 Please upgrade

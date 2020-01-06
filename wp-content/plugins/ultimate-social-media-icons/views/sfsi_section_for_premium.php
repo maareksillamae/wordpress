@@ -35,7 +35,7 @@
         margin-left: 15px;
     }
     .sfsi-footer-right-section{
-        width: 38%;
+        width: 34%;
         position: relative;
         min-height: 1px;
         float: left;
@@ -199,7 +199,7 @@
             width: 51%;
         }
         .sfsi-footer-right-section {
-            width: 41%;
+            width: 40%;
         }
     }
 </style>
@@ -299,7 +299,9 @@
             </div>
             <div class="sfsi-footer-right-section">
                 <span class="sfsi-right-video">
-                    <iframe src="https://player.vimeo.com/video/269140798" width="100%" height="230" frameborder="0" allowfullscreen=""></iframe>
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://video.inchev.com/videos/embed/c952d896-34be-45bc-8142-ba14694c1bd0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
                 </span>
                 <a  target="_blank" href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=new_bottom_banner_to_checkout&utm_medium=banner" class="sfsi-checkout-premium-plugin-button">Check out the Premium Plugin >></a>
             </div>

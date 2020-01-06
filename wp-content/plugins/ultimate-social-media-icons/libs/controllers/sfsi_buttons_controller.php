@@ -79,7 +79,7 @@ function sfsi_options_updater2()
     $sfsi_twitter_aboutPage         = isset($_POST["sfsi_twitter_aboutPage"]) ? sanitize_text_field($_POST["sfsi_twitter_aboutPage"]) : 'no';
     $sfsi_twitter_page              = isset($_POST["sfsi_twitter_page"]) ? sanitize_text_field($_POST["sfsi_twitter_page"]) : 'no';
     $sfsi_twitter_pageURL           = isset($_POST["sfsi_twitter_pageURL"]) ? esc_url(trim($_POST["sfsi_twitter_pageURL"])) : '';
-    $sfsi_twitter_aboutPageText     = isset($_POST["sfsi_twitter_aboutPageText"]) ? sanitize_text_field($_POST["sfsi_twitter_aboutPageText"]) : 'Hey check out this cool site I found';
+    $sfsi_twitter_aboutPageText     = isset($_POST["sfsi_twitter_aboutPageText"]) ? sanitize_text_field($_POST["sfsi_twitter_aboutPageText"]) : '';
     $sfsi_youtube_pageUrl           = isset($_POST["sfsi_youtube_pageUrl"]) ? esc_url(trim($_POST["sfsi_youtube_pageUrl"])) : '';
     $sfsi_youtube_page              = isset($_POST["sfsi_youtube_page"]) ? sanitize_text_field($_POST["sfsi_youtube_page"]) : 'no';
     $sfsi_youtube_follow            = isset($_POST["sfsi_youtube_follow"]) ? sanitize_text_field($_POST["sfsi_youtube_follow"]) : 'no';

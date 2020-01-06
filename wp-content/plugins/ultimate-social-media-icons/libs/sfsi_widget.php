@@ -118,8 +118,8 @@ class Sfsi_Widget extends WP_Widget
 			$icons_per_row   	   = ($sfsi_section5['sfsi_icons_perRow']) ? $sfsi_section5['sfsi_icons_perRow'] : '';
 
 			$icons_alignment 	   = $sfsi_section5['sfsi_icons_Alignment'];
-			$icons_alignment_widget 	   = $sfsi_section5['sfsi_icons_Alignment_via_widget'];
-			$icons_alignment_shortcode 	   = $sfsi_section5['sfsi_icons_Alignment_via_shortcode'];
+			$icons_alignment_widget 	   = isset($sfsi_section5['sfsi_icons_Alignment_via_widget'])?sanitize_text_field($sfsi_section5['sfsi_icons_Alignment_via_widget']):'left';
+			$icons_alignment_shortcode 	   = isset($sfsi_section5['sfsi_icons_Alignment_via_shortcode'])?sanitize_text_field($sfsi_section5['sfsi_icons_Alignment_via_shortcode']):'left';
 
 			$position 			   = 'position:absolute;';
 			$position1 			   = 'position:absolute;';

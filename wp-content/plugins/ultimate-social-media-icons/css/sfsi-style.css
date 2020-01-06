@@ -985,20 +985,7 @@ ul.tab_3_icns li .radio {
     cursor: pointer;
 }
 
-.top_arow {
-    background: url(../images/top_aro.png) no-repeat;
-    position: absolute;
-    top: -29px;
-    left: 38%;
-    width: 33px;
-    height: 29px;
-    backgoround-color: #fff;
-}
 
-.sfsi_tool_tip_2 .top_arow .sfsi_inside,
-.top_arow .sfsi_inside {
-    float: left;
-}
 
 .sfsi_tool_tip_2 .tool_tip>img,
 .tool_tip>img {
@@ -3485,7 +3472,7 @@ ul.sfsi_icn_listing8 li .tb_4_ck{
     display: flex;
     height: 0px;
     position: absolute;
-    top: 13px;
+    top: 42px;
     right: 0;
 }
 

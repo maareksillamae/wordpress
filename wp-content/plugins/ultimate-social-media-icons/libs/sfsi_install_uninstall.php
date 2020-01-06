@@ -39,7 +39,7 @@ function sfsi_update_plugin()
         update_option("sfsi_custom_icons", "yes");
     }
     //Install version
-    update_option("sfsi_pluginVersion", "2.45");
+    update_option("sfsi_pluginVersion", "2.46");
 
     if (!get_option('sfsi_serverphpVersionnotification')) {
         add_option("sfsi_serverphpVersionnotification", "yes");
@@ -452,7 +452,12 @@ function sfsi_update_plugin()
         if (isset($option5['sfsi_google_MouseOverText'])) {
             unset($option5['sfsi_google_MouseOverText']);
         }
-
+        if (!isset($option5['sfsi_icons_Alignment_via_widget'])) {
+            $option5['sfsi_icons_Alignment_via_widget'] =   'left';
+        }
+        if (!isset($option5['sfsi_icons_Alignment_via_shortcode'])) {
+            $option5['sfsi_icons_Alignment_via_shortcode']  =   'left';
+        }
         if (!isset($option5['sfsi_pplus_icons_suppress_errors'])) {
 
             $sup_errors = "no";
