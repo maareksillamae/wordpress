@@ -143,7 +143,7 @@ $crio_editor_file = 'post-and-page-builder/post-and-page-builder.php';
 					<h2><?php esc_html_e( 'Go Pro', 'crio' ); ?></h2>
 					<p><?php esc_html_e( 'Crio Pro gives you access to advanced features and more control over your designs. For a one-time cost of $39 you can design your site with professional level confidence.', 'crio' ); ?></p>
 					<p>
-						<a href="https://www.boldgrid.com/get-pro-crio/" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'Get Crio Pro', 'crio' ); ?></a>
+						<a href="https://boldgrid.com/wordpress-themes/crio/?utm_source=Appearance_-_Crio&utm_medium=Button&utm_campaign=Crio_FTP&utm_content=Get_Crio_Pro" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'Get Crio Pro', 'crio' ); ?></a>
 					</p>
 				</div>
 				<div class="welcome-panel-column">
